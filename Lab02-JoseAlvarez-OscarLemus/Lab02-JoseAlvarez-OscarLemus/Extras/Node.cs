@@ -16,22 +16,22 @@ namespace Lab02_JoseAlvarez_OscarLemus.Extras
             this.Data = data_;
         }
 
-        public void insertData(ref Node<T> node, T data)
-        {
-            if (node == null)
-            {
-                node = new Node<T>(data);
+        //public void insertData(ref Node<T> node, T data)
+        //{
+        //    if (node == null)
+        //    {
+        //        node = new Node<T>(data);
 
-            }
-            //else if (node.Data < data)
-            //{
-            //    insertData(ref node.right, data);
-            //}
+        //    }
+        //    else if (node.Data < data)
+        //    {
+        //        insertData(ref node.right, data);
+        //    }
 
-            //else if (node.Data > data)
-            //{
-            //    insertData(ref node.left, data);
-            //}
-        }
+        //    else if (node.Data > data)
+        //    {
+        //        insertData(ref node.left, data);
+        //    }
+        //}
     }
 }

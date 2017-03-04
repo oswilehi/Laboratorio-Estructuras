@@ -30,7 +30,11 @@ namespace Lab02_JoseAlvarez_OscarLemus.Models
         public Product(int _product_key, string _product_description, int _product_price, int _quantity_of_product)
         {
             this.product_key = _product_key;
+            this.product_description = _product_description;
+            this.product_price = _product_price;
+            this.quantity_of_product = _quantity_of_product;
         }
+
 
     }
 }
