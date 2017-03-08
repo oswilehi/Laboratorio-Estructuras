@@ -34,7 +34,7 @@ namespace Lab02_JoseAlvarez_OscarLemus.Extras
                 element_count++;
             }
 
-            else if (comparer(Data, node.Data) == 1)
+            else if (comparer(Data, node.Data) == -1)
             {
                 if (node.right == null)
                 {
@@ -45,7 +45,7 @@ namespace Lab02_JoseAlvarez_OscarLemus.Extras
                     Insert(node.right, Data, comparer);
             }
 
-            else if (comparer(Data, node.Data) == -1)
+            else if (comparer(Data, node.Data) == 1)
             {
                 if (node.left == null)
                 {
@@ -68,6 +68,27 @@ namespace Lab02_JoseAlvarez_OscarLemus.Extras
             return element_count;
         }
 
+
+        public void Search(Node<T> node, Comparison<T> comparer, T data_)
+        {
+            if (comparer(data_, node.Data) == 0)
+            {
+                node.Data = data_;
+            }
+            else if (comparer(data_, node.Data) == 1)
+            {
+                Search(node.left, comparer, data_);
+            }
+            else if (comparer(data_, node.Data) == -1)
+            {
+                Search(node.right, comparer, data_);
+            }
+        }
+
+        public void Search(Comparison<T> comparer, T data_)
+        {
+            Search(root, comparer, data_);
+        }
 
     }
 }

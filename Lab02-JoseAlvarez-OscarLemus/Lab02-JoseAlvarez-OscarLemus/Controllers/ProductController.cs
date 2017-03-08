@@ -81,6 +81,9 @@ namespace Lab02_JoseAlvarez_OscarLemus.Controllers
             int product_price = int.Parse(Request.Form[3]);
             int quantity_of_product = int.Parse(Request.Form[4]);
 
+            Product ProductObj = new Product(id, product_description, product_price, quantity_of_product);
+
+            ProductsTree.Search(delegate (Product x, Product y) { return x.product_key.CompareTo(y.product_key); }, ProductObj);
        
 
 
@@ -88,6 +91,7 @@ namespace Lab02_JoseAlvarez_OscarLemus.Controllers
             return RedirectToAction("Index", Session["ProductsTree"]);
 
         }
+
 
         // GET: Product/Delete/5
         public ActionResult Delete(int id)
