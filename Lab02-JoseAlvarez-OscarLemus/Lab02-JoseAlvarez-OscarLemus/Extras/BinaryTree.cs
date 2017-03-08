@@ -34,7 +34,7 @@ namespace Lab02_JoseAlvarez_OscarLemus.Extras
                 element_count++;
             }
 
-            else if (comparer(Data, node.Data) == 1)
+            else if (comparer(Data, node.Data) == -1)
             {
                 if (node.right == null)
                 {
@@ -45,7 +45,7 @@ namespace Lab02_JoseAlvarez_OscarLemus.Extras
                     Insert(node.right, Data, comparer);
             }
 
-            else if (comparer(Data, node.Data) == -1)
+            else if (comparer(Data, node.Data) == 1)
             {
                 if (node.left == null)
                 {
@@ -68,6 +68,33 @@ namespace Lab02_JoseAlvarez_OscarLemus.Extras
             return element_count;
         }
 
+
+        /// <summary>
+        /// Metodo para buscar en el arbol
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="comparer">Criterio para buscar en el arbol, en este caso es de la misma data pero al llamar el metodo se especifica porque caracteristica de la data se desea buscar</param>
+        /// <param name="data_">Informacion nueva para colocar</param>
+        public void Search(Node<T> node, Comparison<T> comparer, T data_)
+        {
+            if (comparer(data_, node.Data) == 0)
+            {
+                node.Data = data_;
+            }
+            else if (comparer(data_, node.Data) == 1)
+            {
+                Search(node.left, comparer, data_);
+            }
+            else if (comparer(data_, node.Data) == -1)
+            {
+                Search(node.right, comparer, data_);
+            }
+        }
+
+        public void Search(Comparison<T> comparer, T data_)
+        {
+            Search(root, comparer, data_);
+        }
 
     }
 }
