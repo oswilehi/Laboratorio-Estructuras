@@ -69,6 +69,12 @@ namespace Lab02_JoseAlvarez_OscarLemus.Extras
         }
 
 
+        /// <summary>
+        /// Metodo para buscar en el arbol
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="comparer">Criterio para buscar en el arbol, en este caso es de la misma data pero al llamar el metodo se especifica porque caracteristica de la data se desea buscar</param>
+        /// <param name="data_">Informacion nueva para colocar</param>
         public void Search(Node<T> node, Comparison<T> comparer, T data_)
         {
             if (comparer(data_, node.Data) == 0)
