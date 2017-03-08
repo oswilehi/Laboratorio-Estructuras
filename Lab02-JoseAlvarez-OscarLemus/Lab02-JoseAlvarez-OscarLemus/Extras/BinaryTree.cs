@@ -96,5 +96,27 @@ namespace Lab02_JoseAlvarez_OscarLemus.Extras
             Search(root, comparer, data_);
         }
 
+        public T SearchOnly(Node<T> node, Comparison<T> comparer, T data_)
+        {
+            T Data = data_;
+            if (comparer(data_, node.Data) == 0)
+            {
+                return node.Data;
+            }
+            else if (comparer(data_, node.Data) == 1)
+            {
+                Data = SearchOnly(node.left, comparer, data_);
+            }
+            else if (comparer(data_, node.Data) == -1)
+            {
+                Data = SearchOnly(node.right, comparer, data_);
+            }
+            return Data;
+        }
+
+        public T SearchOnly(Comparison<T> comparer, T data_)
+        {
+            return SearchOnly(root, comparer, data_);
+        }
     }
 }
