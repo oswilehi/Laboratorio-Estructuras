@@ -18,9 +18,7 @@ namespace Lab02_JoseAlvarez_OscarLemus.Extras
 
         public IEnumerator<T> GetEnumerator()
         {
-            if (root != null)
-                yield return root.Data;
-
+            return root.GetEnumerator();
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
@@ -64,6 +62,12 @@ namespace Lab02_JoseAlvarez_OscarLemus.Extras
         {
             Insert(root, Data, comparer);
         }
+
+        public int Size()
+        {
+            return element_count;
+        }
+
 
     }
 }
