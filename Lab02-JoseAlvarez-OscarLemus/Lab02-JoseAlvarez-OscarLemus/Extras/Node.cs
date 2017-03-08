@@ -19,9 +19,9 @@ namespace Lab02_JoseAlvarez_OscarLemus.Extras
         public IEnumerator<T> GetEnumerator()
         {
 
-            if (left != null)
+            if (right != null)
             {
-                foreach (var v in left)
+                foreach (var v in right)
                 {
                     yield return v;
                 }
@@ -29,9 +29,9 @@ namespace Lab02_JoseAlvarez_OscarLemus.Extras
 
             yield return Data;
 
-            if (right != null)
+            if (left != null)
             {
-                foreach (var v in right)
+                foreach (var v in left)
                 {
                     yield return v;
                 }
