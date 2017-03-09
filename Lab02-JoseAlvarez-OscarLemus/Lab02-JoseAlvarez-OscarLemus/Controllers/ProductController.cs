@@ -167,20 +167,6 @@ namespace Lab02_JoseAlvarez_OscarLemus.Controllers
             return View("Index", Session["ProductsTree"]);
         }
 
-        public ActionResult Search(int product_key)
-        {
-            ProductsTree = (BinaryTree<Product>)Session["ProductsTree"];
-            Product ProductObj = new Product(product_key, null, -1, -1);
-
-            Product product = ProductsTree.SearchOnly(compararProductos, ProductObj);
-
-            BinaryTree<Product> temporalTree = new BinaryTree<Product>();
-            temporalTree.Insert(product, compararProductos); 
-            Session["Filter"] = temporalTree;
-            Session["ProductsTree"] = ProductsTree;
-            return View("Index", Session["Filter"]);
-        }
-
         public int compararProductos(Product x, Product y)
         {
             if (y == null)
