@@ -31,6 +31,25 @@ namespace Lab02_JoseAlvarez_OscarLemus.Controllers
         }
 
 
+        // GET: Invoice/Edit/5
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        // POST: Invoice/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, FormCollection collection)
+        {
+            BinaryTree<Invoice> InvoiceTree = (BinaryTree<Invoice>)Session["InvoiceTree"];
+
+            string purchaseDescription = Request.Form[0];
+            Session["InvoiceTree"] = InvoiceTree;
+            return RedirectToAction("Index", Session["InvoiceTree"]);
+        }
+
+
+
 
         [HttpPost] //Since user is retrieving data
         public ActionResult ReadInvoice(HttpPostedFileBase uploadedFile)
@@ -67,7 +86,7 @@ namespace Lab02_JoseAlvarez_OscarLemus.Controllers
                         catch (Exception)
                         {
                         }
-                        InvoiceObj = new Invoice(information[0], information[1], information[2], information[3], information[4], information[5], total);
+                        InvoiceObj = new Invoice(information[0], information[1], information[2], information[3], information[4], information[5], information[6]);
                     }
                     else if (information.Length == 6) // means no serial in the parameteres, there will be a random one.
                     {
@@ -80,7 +99,7 @@ namespace Lab02_JoseAlvarez_OscarLemus.Controllers
                         catch (Exception)
                         {
                         }
-                        InvoiceObj = new Invoice(information[0], information[1], information[2], information[3], information[4], total);
+                        InvoiceObj = new Invoice(information[0], information[1], information[2], information[3], information[4], information[5]);
                     }
 
                     InvoiceTree.Insert(InvoiceObj, (Invoice x, Invoice y) => (x.serial + x.correlative).CompareTo(y.serial + y.correlative));
@@ -93,8 +112,28 @@ namespace Lab02_JoseAlvarez_OscarLemus.Controllers
 
         }
 
-        public ActionResult Add(string serial, string correlative, string customer, string NIT, string date, string purchaseDescription, int total)
+        public ActionResult Add(string serial, string correlative, string customer, string NIT, string date, string purchaseDescription, string total)
         {
+            BinaryTree<Invoice> InvoiceTree;
+            if (Session["InvoiceTree"] != null)
+                InvoiceTree = (BinaryTree<Invoice>)Session["InvoiceTree"];
+            else
+                InvoiceTree = new BinaryTree<Invoice>();
+
+            Invoice InvoiceObj = null;
+            if (serial != null)
+                InvoiceObj = new Invoice(serial, correlative, customer, NIT, date, purchaseDescription, total);
+            else
+                InvoiceObj = new Invoice(correlative, customer, NIT, date, purchaseDescription, total);
+
+            InvoiceTree.Insert(InvoiceObj, Invoice.compareInvoices);
+
+            Session["InvoiceTree"] = InvoiceTree;
+            return View("Index", Session["InvoiceTree"]);
+
+
+
+
 
         }
 
